@@ -1,10 +1,9 @@
 {
-  "name": "icloud-nosync-node",
-  "version": "1.0.2",
+  "name": "@daniel765/node-nosync-icloud",
+  "version": "1.0.0",
   "description": "Make iCloud sync ignore node_modules in your project",
   "main": "nosync.js",
   "bin": {
-    "nosync-node": "nosync.js",
     "nsn": "nosync.js"
   },
   "scripts": {
@@ -12,19 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsdexter/icloud-nosync-node.git"
+    "url": "git+https://github.com/danielpham765/icloud-nosync-node"
   },
   "keywords": [
     "iCloud",
     "nosync",
-    "sync"
+    "sync",
+    "node_modules"
   ],
-  "author": "Thomas Dexter",
+  "author": "Daniel Pham",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tsdexter/icloud-nosync-node/issues"
+    "url": "https://github.com/danielpham765/icloud-nosync-node/issues"
   },
-  "homepage": "https://github.com/tsdexter/icloud-nosync-node#readme",
+  "homepage": "https://github.com/danielpham765/icloud-nosync-node#readme",
   "dependencies": {
     "minimist": "^1.2.0",
     "shelljs": "^0.8.3"

@@ -9,16 +9,16 @@ shell.echo("\n🖕 iCloud: Congratulations iCloud is being fixed. Thx Apple 🙄
 
 // npm install if node_modules doesn't exist
 const sym = shell.exec("find node_modules -type l", { silent: true }).stdout;
-const install = shell.exec("find node_modules -type d", { silent: true })
-  .stdout;
+const install = shell.exec("find node_modules -type d", { silent: true }).stdout;
+const packageManager = args.m != 'npm' ? 'yarn' : 'npm';
 if (install === "" && sym === "") {
   shell.echo(
     "\n🖕 iCloud - Step " +
       step +
-      ": Can't find node_modules - running `npm install`\n"
+      ": Can't find node_modules - running `" + packageManager + " install`\n"
   );
   step++;
-  shell.exec("npm install");
+  shell.exec(`${packageManager} install`);
   shell.echo("\n🖕 iCloud - Step " + step + ": Done installing packages");
   step++;
 }
@@ -56,6 +56,7 @@ if (!args.n && nogitexcludeline) {
       ": Modifying .git/info/exclude to ignore the node_modules .nosync folder and symlink"
   );
   step++;
+  shell.exec('echo "" >> .git/info/exclude');
   shell.exec('echo "# ignore node_modules symlink" >> .git/info/exclude');
   shell.exec('echo "node_modules.nosync/" >> .git/info/exclude');
   shell.exec('echo "node_modules" >> .git/info/exclude');
@@ -75,7 +76,11 @@ if (!args.n && nogitignoreline) {
       ": Modifying .gitignore to ignore the node_modules folder"
   );
   step++;
-  shell.exec('echo "node_modules/" >> .gitignore');
+  const findNodeModule = shell.exec('find .gitignore -type f -print0 | xargs -0 grep -l "node_modules"', { silent: true }).stdout === "";
+  if (findNodeModule) {
+    shell.exec('echo "node_modules" >> .gitignore');
+  }
+  shell.exec('echo "node_modules.nosync" >> .gitignore');
 }
 
 // done
