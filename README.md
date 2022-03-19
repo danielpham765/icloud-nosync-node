@@ -7,8 +7,11 @@ This package gives you access to `nsn` command which does some work to stop iClo
 To use:
 
 ```sh
-# Install tool
+# Install tool with yarn
 yarn global add @daniel765/node-nosync-icloud
+
+# Or Install tool with npm
+npm install -g @daniel765/node-nosync-icloud
 ```
 ```sh
 # Install dependencies with yarn
